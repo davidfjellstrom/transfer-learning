@@ -94,24 +94,26 @@ transfer-learning/
 - [x] Bestämde tvåstegs fine-tuning (frys allt → träna huvudet, tina upp sista lagren → träna om) som standard (notebook, avsnitt 3) — ett-stegsvarianten (lärarens exempel) finns kvar till frysdjups-experimentet
 
 ### 4. Experiment 1 — hur mycket data behövs (fråga 1)
-- [ ] Träna båda modelltyperna på varje delmängdsstorlek
-- [ ] Spara hur bra varje modell blev (val-accuracy/val-loss) per storlek och modelltyp
-- [ ] Rita kurvan (huvudbilden för presentationen)
+- [x] Kod klar: `build_dataset`, `train_tl_model`, `train_scratch_model`, `run_experiment1`, `plot_experiment1` (notebook avsnitt 4, cell körs inte automatiskt — TL + scratch, sparar val-accuracy/val-loss per storlek till `reports/experiment1_results.json`)
+- [ ] Kör experimentet (kräver GPU, se `data/raw` + Kaggle-nedladdning nedan) och rita kurvan — **huvudbilden för presentationen**
 
 ### 5. Experiment 2 — hur mycket av modellen behöver ändras (fråga 2)
-- [ ] Träna TL-modellen med olika antal upptinade lager (0 / ~10 / ~30 / alla)
-- [ ] Spara hur bra varje variant blev, med bästa datamängden från experiment 1
-- [ ] Rita kurvan och förklara i text varför tidiga och sena lager beter sig olika
+- [x] Kod klar: `run_experiment2` / `plot_experiment2` (notebook avsnitt 5), tränar med 0/~10/~30/alla upptinade lager
+- [ ] Sätt `BEST_SUBSET_SIZE` utifrån resultatet i experiment 1, kör experimentet, rita kurvan
+- [ ] Förklara i text varför tidiga och sena lager beter sig olika, utifrån resultatet
 
 ### 6. Experiment 3 & utvärdering — vad kostar ett misstag (fråga 3)
-- [ ] Confusion matrix och `classification_report` för den slutgiltiga bästa modellen
+- [x] Kod klar: `train_best_model` / `evaluate_best_model` (notebook avsnitt 6) — confusion matrix + `classification_report` på testsetet
+- [ ] Sätt `BEST_UNFROZEN_LAYERS` utifrån experiment 2, kör och spara resultatet
 - [ ] Diskussion: vilket misstag är dyrast för ett återvinningsföretag, och vad det betyder för hur modellen används
 - [ ] Om tid finns: Grad-CAM (bilder som visar var på bilden modellen tittade)
 
 ### 7. Notebook och presentation
-- [x] Bygg `notebooks/transfer_learning_waste.ipynb`, strukturerad kring de tre frågorna — skelettet finns, avsnitt 1–3 är ifyllda och körda, avsnitt 4–7 är TODO-platshållare tills experimenten är körda
-- [ ] Sammanfatta affärsnyttan: vad kostar felsortering idag, vad skulle modellen ge ett återvinningsföretag, vilka är begränsningarna
-- [ ] Förbered den muntliga presentationen (~15 min)
+- [x] Bygg `notebooks/transfer_learning_waste.ipynb`, strukturerad kring de tre frågorna — avsnitt 1–6 har kod, bara faktisk körning (kräver nedladdad data + GPU) och tolkning av resultat återstår
+- [ ] Sammanfatta affärsnyttan: vad kostar felsortering idag, vad skulle modellen ge ett återvinningsföretag, vilka är begränsningarna (avsnitt 7 i notebooken)
+- [ ] Förbered den muntliga presentationen (~15 min) — bygg på kurvorna från experiment 1–2 och confusion matrix från experiment 3
+
+**Innan ni kan köra experimenten:** ladda ner datasetet (`kaggle datasets download ...`, se ovan) så `data/raw/train/` finns, och kör notebookens avsnitt 2 (skapar `data/splits/`). Sedan avkommentera och kör `run_experiment1()` osv. i Colab (GPU).
 
 ## Kör lokalt
 
