@@ -1,0 +1,26 @@
+# Data (nedladdas via Kaggle API, ligger inte i repot)
+data/
+
+# Modeller och checkpoints
+*.h5
+*.keras
+checkpoints/
+
+# Miljö och hemligheter
+.env
+.kaggle/
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# macOS
+.DS_Store
+
+# Vår promptspecifikation — internt referensmaterial, inte del av inlämningen
+claude_code_prompt_waste_classification*.md
