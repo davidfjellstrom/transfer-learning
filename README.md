@@ -81,14 +81,14 @@ transfer-learning/
 
 ### 1. Grundstruktur och miljö
 - [x] Ladda ner dataset till `data/raw`
-- [ ] Sätt upp git-repo med branches för parallellt arbete
-- [ ] `requirements.txt` och `.gitignore` (`data/`, `*.h5`, checkpoints, `.env`)
-- [ ] Skapa mappstrukturen ovan
+- [x] Sätt upp git-repo med branches för parallellt arbete
+- [x] `requirements.txt` och `.gitignore` (`data/`, `*.h5`, checkpoints, `.env`)
+- [x] Skapa mappstrukturen ovan
 
 ### 2. Databehandling
-- [ ] Utforska klassbalans och exempelbilder per klass
-- [ ] Bygga eget train/val/test-split ur `train/` (INTE Kaggle-tävlingens `test/`)
-- [ ] Funktion för att dra balanserade delmängder av given storlek per klass
+- [x] Utforska klassbalans och exempelbilder per klass (`src/data_prep.py`, se `reports/figures/`)
+- [x] Bygga eget train/val/test-split ur `train/` (INTE Kaggle-tävlingens `test/`)
+- [x] Funktion för att dra balanserade delmängder av given storlek per klass
 
 ### 3. Modeller
 - [ ] Transfer learning-modell: `ResNet50V2`-bas + eget klassificeringshuvud (GAP → Dense(128) → BatchNorm → Dropout → Dense(3, softmax))
@@ -127,6 +127,9 @@ jupyter notebook notebooks/transfer_learning_waste.ipynb
 ## Kör i Google Colab
 
 Öppna `notebooks/transfer_learning_waste.ipynb` i Colab, aktivera GPU-runtime (Runtime → Change runtime type → GPU), och kör cellerna i ordning. Notebooken hämtar och installerar det den behöver.
+
+# Övrigt
+Skapa 
 
 ---
 
