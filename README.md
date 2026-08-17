@@ -2,7 +2,7 @@
 
 Grupprojekt i kursen *Tillämpad AI, datautvinning, maskininlärning och deep learning* (YH-utbildning). Vi bygger en bildklassificerare som sorterar avfall i tre kategorier — **Recyclable**, **Electronic**, **Organic** — och undersöker hur mycket träningsdata transfer learning faktiskt behöver jämfört med en modell tränad från scratch.
 
-**Gruppmedlemmar:** David Fjellström, Anton
+**Gruppmedlemmar:** David Fjellström, Anton Hergefelt
 
 ## Bakgrund
 
