@@ -94,26 +94,19 @@ transfer-learning/
 - [x] Bestämde tvåstegs fine-tuning (frys allt → träna huvudet, tina upp sista lagren → träna om) som standard (notebook, avsnitt 3) — ett-stegsvarianten (lärarens exempel) finns kvar till frysdjups-experimentet
 
 ### 4. Experiment 1 — hur mycket data behövs (fråga 1)
-- [x] Kod klar: `build_dataset`, `train_tl_model`, `train_scratch_model`, `run_experiment1`, `plot_experiment1` (notebook avsnitt 4, cell körs inte automatiskt — TL + scratch, sparar val-accuracy/val-loss per storlek till `reports/experiment1_results.json`)
-- [ ] Kör experimentet (kräver GPU, se `data/raw` + Kaggle-nedladdning nedan) och rita kurvan — **huvudbilden för presentationen**
+- [x] `run_experiment1` / `plot_experiment1` körda (notebook avsnitt 4). Bäst TL-resultat: 92,5% med alla bilder, men redan 87,5% med bara 50 bilder/kategori — mot scratch-modellens 48,3% på samma lilla datamängd. Resultat i `reports/experiment1_results.json`, kurvan i `reports/figures/experiment1_data_needed.png`
 
 ### 5. Experiment 2 — hur mycket av modellen behöver ändras (fråga 2)
-- [x] Kod klar: `run_experiment2` / `plot_experiment2` (notebook avsnitt 5), tränar med 0/~10/~30/alla upptinade lager
-- [ ] Sätt `BEST_SUBSET_SIZE` utifrån resultatet i experiment 1, kör experimentet, rita kurvan
-- [ ] Förklara i text varför tidiga och sena lager beter sig olika, utifrån resultatet
+- [x] `run_experiment2` / `plot_experiment2` körda med `BEST_SUBSET_SIZE = 2773` (notebook avsnitt 5). Bäst resultat: **30 upptinade lager** (93,4%) — bättre än både bara huvudet (92,7%) och alla 190 lager (93,3%). Resultat i `reports/experiment2_results.json`, kurvan i `reports/figures/experiment2_unfrozen_layers.png`
 
 ### 6. Experiment 3 & utvärdering — vad kostar ett misstag (fråga 3)
-- [x] Kod klar: `train_best_model` / `evaluate_best_model` (notebook avsnitt 6) — confusion matrix + `classification_report` på testsetet
-- [ ] Sätt `BEST_UNFROZEN_LAYERS` utifrån experiment 2, kör och spara resultatet
-- [ ] Diskussion: vilket misstag är dyrast för ett återvinningsföretag, och vad det betyder för hur modellen används
-- [ ] Om tid finns: Grad-CAM (bilder som visar var på bilden modellen tittade)
+- [x] `train_best_model` / `evaluate_best_model` körda med `BEST_UNFROZEN_LAYERS = 30` (notebook avsnitt 6). Slutmodell: 92% accuracy på testsetet. Electronic förväxlas nästan aldrig med övriga kategorier (recall 97%) — den vanligaste förväxlingen är Recyclable/Organic, ett billigare misstag. Confusion matrix i `reports/figures/confusion_matrix.png`, helhetsresultat i `reports/final_summary.json`
+- [ ] Grad-CAM — hoppades över, prioriterades inte (inte kritiskt för presentationen)
 
 ### 7. Notebook och presentation
-- [x] Bygg `notebooks/transfer_learning_waste.ipynb`, strukturerad kring de tre frågorna — avsnitt 1–6 har kod, bara faktisk körning (kräver nedladdad data + GPU) och tolkning av resultat återstår
-- [ ] Sammanfatta affärsnyttan: vad kostar felsortering idag, vad skulle modellen ge ett återvinningsföretag, vilka är begränsningarna (avsnitt 7 i notebooken)
+- [x] `notebooks/transfer_learning_waste.ipynb` klar rakt igenom, avsnitt 1–7 kodade, körda och med riktig output
+- [x] Affärsnytta, begränsningar och svar på alla tre frågor skrivna i avsnitt 7
 - [ ] Förbered den muntliga presentationen (~15 min) — bygg på kurvorna från experiment 1–2 och confusion matrix från experiment 3
-
-**Innan ni kan köra experimenten:** ladda ner datasetet (`kaggle datasets download ...`, se ovan) så `data/raw/train/` finns, och kör notebookens avsnitt 2 (skapar `data/splits/`). Sedan avkommentera och kör `run_experiment1()` osv. i Colab (GPU).
 
 ## Kör lokalt
 
@@ -127,9 +120,6 @@ jupyter notebook notebooks/transfer_learning_waste.ipynb
 ## Kör i Google Colab
 
 Öppna `notebooks/transfer_learning_waste.ipynb` i Colab, sätt på GPU (Runtime → Change runtime type → GPU), och kör cellerna i ordning. Notebooken laddar ner och installerar det den behöver själv.
-
-# Övrigt
-Skapa 
 
 ---
 
