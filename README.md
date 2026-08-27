@@ -4,7 +4,7 @@ Det här är vårt grupprojekt i kursen *Tillämpad AI, datautvinning, maskininl
 
 **Vad vi bygger:** ett AI-program som tittar på en bild av skräp och gissar vilken typ det är — **återvinningsbart**, **elektronik** eller **organiskt**. Vi undersöker också hur mycket träningsdata som faktiskt behövs för att det ska funka bra, jämfört med att träna en modell helt från noll.
 
-**Gruppmedlemmar:** David Fjellström, Anton Hergefelt
+**Gruppmedlemmar:** David Fjellström, Anton Hergefelt & Gabriella Cross
 
 ## Bakgrund
 
